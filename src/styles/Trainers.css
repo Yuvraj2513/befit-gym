@@ -1,96 +1,84 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600') no-repeat center center/cover;
-  background-attachment: fixed;
-  color: white;
-}
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.85);
+.trainers-page {
+  background-color: #111;
+  color: #fff;
+  padding: 60px 20px;
   min-height: 100vh;
-  padding: 60px 30px;
 }
 
-h1 {
+.trainers-header {
   text-align: center;
-  font-size: 3rem;
   margin-bottom: 50px;
+}
+
+.trainers-header h1 {
+  font-size: 2.8rem;
   color: #ffcc00;
+  margin-bottom: 10px;
 }
 
-.trainers {
+.trainers-header p {
+  font-size: 1.2rem;
+  color: #ddd;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.trainers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
-  max-width: 1500px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.trainer {
+.trainer-card {
   background-color: #1e1e1e;
-  border-radius: 20px;
+  border-radius: 12px;
   overflow: hidden;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.trainer:hover {
+.trainer-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 0 25px rgba(255, 204, 0, 0.7);
+  box-shadow: 0 8px 25px rgba(255, 204, 0, 0.3);
 }
 
-.trainer img {
+.trainer-image-wrapper {
+  height: 250px;
+  overflow: hidden;
+}
+
+.trainer-image {
   width: 100%;
-  height: 270px;
+  height: 100%;
   object-fit: cover;
-  border-bottom: 2px solid #ffcc00;
+  transition: transform 0.4s ease;
 }
 
-.trainer h2 {
-  font-size: 1.6rem;
-  margin: 15px 0 5px;
+.trainer-card:hover .trainer-image {
+  transform: scale(1.1);
+}
+
+.trainer-info {
+  padding: 25px;
+}
+
+.trainer-name {
+  font-size: 1.5rem;
   color: #ffcc00;
+  margin: 0 0 5px 0;
 }
 
-.trainer p {
-  margin: 0 20px 15px;
-  font-size: 0.95rem;
+.trainer-specialty {
+  font-size: 1rem;
   color: #ccc;
-  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 15px;
 }
 
-.social-icons {
-  padding-bottom: 20px;
-}
-
-.social-icons a {
-  margin: 0 10px;
-  color: #ffcc00;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.3s;
-}
-
-.social-icons a:hover {
-  color: #fff;
-}
-
-.footer {
-  text-align: center;
-  margin-top: 60px;
-  font-size: 1.1rem;
+.trainer-bio {
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: #bbb;
-}
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  .trainer p {
-    font-size: 0.9rem;
-    margin: 0 10px 15px;
-  }
 }

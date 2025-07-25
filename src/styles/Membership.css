@@ -1,0 +1,59 @@
+.plan-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 0 28px rgba(255, 204, 0, 0.7);
+}
+
+.plan-button:hover {
+  background: #e6b800;
+  transform: scale(1.05);
+}
+
+/* Accessibility Improvement: Clear focus state for keyboard navigation */
+.plan-button:focus-visible {
+  outline: 3px solid #ffcc00;
+  outline-offset: 3px;
+  background: #e6b800;
+}
+
+.membership-page {
+  background: url("https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat fixed;
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.membership-overlay {
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 40px 20px;
+  border-radius: 12px;
+}
+
+.membership-header {
+  text-align: center;
+  margin: 70px 0;
+}
+
+.membership-header h1 {
+  font-size: 2.8rem;
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.membership-header p {
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.membership-footer {
+  text-align: center;
+  margin-top: 70px;
+  font-size: 1.1rem;
+  color: #bbb;
+}

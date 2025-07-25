@@ -17,8 +17,8 @@ const StatsCounter = () => {
         <p>Trusted by thousands. Powered by results.</p>
       </div>
       <div className="stats-grid">
-        {stats.map((stat, index) => (
-          <div className="stat-card" key={index}>
+        {stats.map((stat) => (
+          <div className="stat-card" key={stat.label}>
             <h3>
               <CountUp end={stat.end} duration={2.5} separator="," />
               +

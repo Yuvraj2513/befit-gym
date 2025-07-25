@@ -23,15 +23,20 @@ function App() {
 
       
         <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Navigate to="/loginsignup" replace />} />
+          {/* Public Routes */}
+          <Route path="/" element={<Navigate to="/loginsignup" replace />} />
           <Route path="/loginsignup" element={<LoginSignup />} />
-          <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
-          <Route path="/contact" element={<ProtectedRoute><Contact /></ProtectedRoute>} />
-          <Route path="/gallery" element={<ProtectedRoute><Gallery /></ProtectedRoute>} />
-          <Route path="/membership" element={<ProtectedRoute><Membership /></ProtectedRoute>} />
-          <Route path="/trainers" element={<ProtectedRoute><Trainers /></ProtectedRoute>} />
-          <Route path="/blog" element={<ProtectedRoute><Blog /></ProtectedRoute>} />
-          <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/membership" element={<Membership />} />
+            <Route path="/trainers" element={<Trainers />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/account" element={<Account />} />
+          </Route>
         </Routes>
      
         
