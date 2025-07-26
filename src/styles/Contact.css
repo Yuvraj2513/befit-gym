@@ -61,6 +61,12 @@
   background: #e6b800;
 }
 
+.contact-form .submit-button:disabled {
+  background-color: #8c7a2e; /* A darker, muted yellow */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .rating-section {
   margin-top: 40px;
   margin-bottom: 20px;
@@ -82,6 +88,9 @@
 .star {
   font-size: 2rem;
   color: #888;
+  /* Reset button styles to look like text */
+  background: none;
+  border: none;
   cursor: pointer;
   transition: color 0.2s, transform 0.2s;
 }
@@ -107,4 +116,17 @@
 
 .feedback-message.error {
   color: #f44336; /* Red */
+}
+
+/* For accessibility: hide labels visually but keep them for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

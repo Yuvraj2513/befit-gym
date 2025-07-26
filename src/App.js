@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route,Navigate, useLocation } from 'react-router-dom';
-import LoginSignup from './pages/LoginSignup';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
-import Gallery from './pages/Gallery';
-import Membership from './pages/Membership';
-import Trainers from './pages/Trainers';
 import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
-import Blog from './pages/Blog';
 import CalorieButton from './components/CalorieButton';
-import Account from './pages/Account';
+import LoadingSpinner from './components/LoadingSpinner';
+
+// Lazy load page components
+const LoginSignup = lazy(() => import('./pages/LoginSignup'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Membership = lazy(() => import('./pages/Membership'));
+const Trainers = lazy(() => import('./pages/Trainers'));
+const Blog = lazy(() => import('./pages/Blog'));
+const Account = lazy(() => import('./pages/Account'));
 
 function App() {
   const location = useLocation();
@@ -20,8 +24,9 @@ function App() {
   return (
     <>
       <Navbar />
+      <ScrollToTop />
 
-      
+      <Suspense fallback={<LoadingSpinner />}>
         <Routes location={location} key={location.pathname}>
           {/* Public Routes */}
           <Route path="/" element={<Navigate to="/loginsignup" replace />} />
@@ -38,6 +43,7 @@ function App() {
             <Route path="/account" element={<Account />} />
           </Route>
         </Routes>
+      </Suspense>
      
         
       

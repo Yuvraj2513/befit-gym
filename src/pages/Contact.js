@@ -10,6 +10,7 @@ const Contact = () => {
   const [feedback, setFeedback] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     if (!name || !email || !message) {
@@ -24,27 +25,36 @@ const Contact = () => {
     return null;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSubmitted(false);
+    setLoading(true);
 
     const validationError = validateForm();
     if (validationError) {
       setError(validationError);
+      setLoading(false);
       return;
     }
 
-    // In a real app, you would send this data to a server
-    console.log({ name, email, message, rating, feedback });
+    try {
+      // Simulate a network request
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Reset form and show success message
-    setName('');
-    setEmail('');
-    setMessage('');
-    setRating(0);
-    setFeedback('');
-    setSubmitted(true);
+      // In a real app, you would send this data to a server
+      console.log({ name, email, message, rating, feedback });
+
+      // Reset form and show success message
+      setName('');
+      setEmail('');
+      setMessage('');
+      setRating(0);
+      setFeedback('');
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,21 +62,27 @@ const Contact = () => {
       <div className="contact-box">
         <h2>Contact Us & Feedback</h2>
         <form className="contact-form" onSubmit={handleSubmit}>
+          <label htmlFor="contact-name" className="visually-hidden">Your Name</label>
           <input
+            id="contact-name"
             type="text"
             placeholder="Your Name"
             className="input-field"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <label htmlFor="contact-email" className="visually-hidden">Your Email</label>
           <input
+            id="contact-email"
             type="email"
             placeholder="Your Email"
             className="input-field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <label htmlFor="contact-message" className="visually-hidden">Your Message</label>
           <textarea
+            id="contact-message"
             rows="4"
             placeholder="Your Message"
             className="input-field"
@@ -77,22 +93,28 @@ const Contact = () => {
           {/* Rating Section */}
           <div className="rating-section">
             <h3>Rate Your Experience</h3>
-            <div className="stars-container">
+            <div className="stars-container" role="radiogroup" aria-label="Experience Rating">
             {[1, 2, 3, 4, 5].map((star) => (
-              <span
+              <button
+                type="button"
                 key={star}
                 onClick={() => setRating(star)}
                 onMouseEnter={() => setHovered(star)}
                 onMouseLeave={() => setHovered(0)}
                 className={`star ${(hovered || rating) >= star ? 'active' : ''}`}
+                aria-label={`Rate ${star} out of 5 stars`}
+                aria-pressed={rating === star}
+                role="radio"
               >
                 ★
-              </span>
+              </button>
             ))}
           </div>
           </div>
 
+          <label htmlFor="contact-feedback" className="visually-hidden">Optional Feedback</label>
           <textarea
+            id="contact-feedback"
             placeholder="Optional: Tell us more about your experience..."
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
@@ -100,8 +122,8 @@ const Contact = () => {
             className="input-field"
           />
 
-          <button type="submit" className="submit-button">
-            Submit Feedback
+          <button type="submit" className="submit-button" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit Feedback'}
           </button>
 
           {error && <p className="feedback-message error">{error}</p>}
