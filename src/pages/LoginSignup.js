@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginSignup.css';
+import bgImage from "../assets/pexels-photo-1552249.webp";
 
-// --- Mock API Layer ---
-// This simulates calling a backend API for authentication.
-// In a real application, these functions would make `fetch` requests to your server.
 
-// In a real app, the secret is only on the server. This is for mock token generation.
 const MOCK_JWT_SECRET = 'your-super-secret-key-for-dev';
 
 // Creates a mock JWT. In a real app, the server does this.
@@ -96,7 +93,8 @@ const LoginSignup = () => {
   };
 
   return (
-    <div className="login-wrapper">
+    
+    <div className="login-wrapper" style={{ backgroundImage: `url(${bgImage})` }}>>
       <div className="login-box">
         <div className="login-toggle">
           <button onClick={() => setIsLogin(true)} className={isLogin ? 'active' : ''}>Login</button>

@@ -1,3 +1,20 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #181818; /* Ya jo bhi dark color chahiye */
+  box-sizing: border-box;
+}
+
+#root, .App {
+  min-height: 100vh;
+  width: 100vw;
+  background: inherit;
+}
+
+
+
+
 .about-section {
     position: relative;
     background: url('https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600') no-repeat center center/cover;

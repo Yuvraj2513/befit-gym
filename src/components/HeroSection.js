@@ -16,6 +16,15 @@ const HeroSection = () => {
 
   return (
     <div style={styles.hero}>
+      {/* Optimized background image */}
+      <img
+        src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        alt="Gym Background"
+        style={styles.backgroundImage}
+        loading="eager"
+        fetchpriority="high"
+      />
+
       <div style={styles.overlay}></div>
 
       <div style={styles.content}>
@@ -47,27 +56,30 @@ const styles = {
   hero: {
     position: 'relative',
     height: '100vh',
-    backgroundImage: `url('https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed',
+    overflow: 'hidden',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
     padding: '20px',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    zIndex: 0,
   },
   overlay: {
     position: 'absolute',
     inset: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    zIndex: 0,
+    zIndex: 1,
   },
   content: {
     color: 'white',
     textAlign: 'center',
-    zIndex: 1,
-    animation: 'fadeIn 1s ease-out',
+    zIndex: 2,
     maxWidth: '90vw',
   },
   brandTitle: {
@@ -107,8 +119,6 @@ const styles = {
     borderRadius: '8px',
     color: 'black',
     fontWeight: 'bold',
-    textDecoration: 'none',
-    transition: '0.3s',
     cursor: 'pointer',
   },
   btnSecondary: {
@@ -116,10 +126,8 @@ const styles = {
     padding: '12px 24px',
     borderRadius: '8px',
     color: '#ffcc00',
-    fontWeight: 'bold',
     background: 'transparent',
-    textDecoration: 'none',
-    transition: '0.3s',
+    fontWeight: 'bold',
     cursor: 'pointer',
   },
   scrollArrow: {

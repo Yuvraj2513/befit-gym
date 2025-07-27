@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route,Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import CalorieButton from './components/CalorieButton';
 import LoadingSpinner from './components/LoadingSpinner';
+import { useAuth } from './context/AuthContext';
 
 // Lazy load page components
 const LoginSignup = lazy(() => import('./pages/LoginSignup'));
@@ -20,10 +21,15 @@ const Account = lazy(() => import('./pages/Account'));
 
 function App() {
   const location = useLocation();
+  const { user } = useAuth();
+
+  // Pages jahan layout chhupana hai
+  const hideLayoutRoutes = ['/loginsignup'];
+  const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
 
   return (
     <>
-      <Navbar />
+      {!shouldHideLayout && user && <Navbar />}
       <ScrollToTop />
 
       <Suspense fallback={<LoadingSpinner />}>
@@ -44,16 +50,13 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
-     
-        
-      
-      {location.pathname !== '/loginsignup' && <Footer />}
-      <CalorieButton />
-      
-      <WhatsAppButton />
 
-      
+      {/* Conditional Layout Buttons */}
+      {!shouldHideLayout && user && <Footer />}
+      {!shouldHideLayout && user && <CalorieButton />}
+      {!shouldHideLayout && user && <WhatsAppButton />}
     </>
   );
 }
+
 export default App;
