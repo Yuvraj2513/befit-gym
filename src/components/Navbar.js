@@ -8,10 +8,10 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
+                                              
   const handleLogout = () => {
     logout();
-    setMenuOpen(false);
+    setMenuOpen(false);    
     navigate('/loginsignup'); // Redirect to login after logout
   };
 
@@ -24,14 +24,9 @@ const Navbar = () => {
           BeFit
         </Link>
 
-        <button
-          className="hamburger-menu"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
+        <div className="hamburger-menu" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes size={24} color="#ffcc00" /> : <FaBars size={24} color="#ffcc00" />}
+        </div>
 
         <ul className={menuOpen ? 'nav-links open' : 'nav-links'}>
           <li><NavLink to="/about" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>About</NavLink></li>
@@ -68,3 +63,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
